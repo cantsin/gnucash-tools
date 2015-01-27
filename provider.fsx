@@ -59,5 +59,5 @@ for transaction in transactions do
     let account = accountMap.[split.Account.Value]
     let lineage = accountLineage account account.Name
     let cost = convertCost split.Value
-    printfn "\t%s %M" lineage cost
+    printfn "\t%-50s\t%10M" lineage cost
   printfn ""
