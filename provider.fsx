@@ -29,6 +29,13 @@ let rec accountLineage a accum: string =
     | Some(p) when validAccount(p) -> accountLineage p (p.Name + ":" + accum)
     | _ -> accum
 
+let convertCost (str: string) =
+  let result = str.Split '/' |> Array.map int
+  match Array.length result with
+    | 1 -> decimal result.[0]
+    | 2 -> decimal ((result.[0] |> float) / (result.[1] |> float))
+    | _ -> failwith ("Invalid cost string: " + str)
+
 // print out accounts (with full path).
 let validAccounts = Array.filter validAccount accounts
 for account in validAccounts do
@@ -51,5 +58,6 @@ for transaction in transactions do
   for split in transaction.Splits do
     let account = accountMap.[split.Account.Value]
     let lineage = accountLineage account account.Name
-    printfn "\t%s %s" lineage split.Value
+    let cost = convertCost split.Value
+    printfn "\t%s %M" lineage cost
   printfn ""
