@@ -1,4 +1,4 @@
-.PHONY: balance
+.PHONY: balance cashflow networth
 LEDGERFILE = test.ledger
 
 all:
