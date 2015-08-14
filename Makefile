@@ -2,7 +2,7 @@
 LEDGERFILE = test.ledger
 
 all:
-	fsharpi -I FSharp.Data.2.1.1/lib/net40/ provider.fsx > $(LEDGERFILE)
+	fsharpi -I FSharp.Data.2.2.5/lib/net40/ provider.fsx > $(LEDGERFILE)
 
 balance:
 	ledger --real bal -p "last month" -f $(LEDGERFILE)

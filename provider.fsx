@@ -46,14 +46,14 @@ for account in validAccounts do
   printfn ""
 
 // print out transactions (sorted by date).
-let byDate (t: Gnucash.Transaction) = t.DatePosted.Date
+let byDate (t: Gnucash.Transaction) = t.Date
 let transactions = Array.sortBy byDate content.Book.Transactions
 for transaction in transactions do
   let description =
     match transaction.Description.String with
       | None -> "(none)"
       | Some(s) -> s
-  let date = transaction.DatePosted.Date.ToString("yyyy/MM/dd")
+  let date = transaction.Date.ToString("yyyy/MM/dd")
   printfn "%s %s" date description
   for split in transaction.Splits do
     let account = accountMap.[split.Account.Value]
