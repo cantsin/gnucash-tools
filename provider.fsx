@@ -42,7 +42,7 @@ for account in validAccounts do
   let lineage = accountLineage account account.Name
   printfn "account %s" lineage
   if account.Description.IsSome then
-    printfn "\tnote %s" account.Description.Value
+    printfn "    note %s" account.Description.Value
   printfn ""
 
 // print out transactions (sorted by date).
@@ -59,5 +59,5 @@ for transaction in transactions do
     let account = accountMap.[split.Account.Value]
     let lineage = accountLineage account account.Name
     let cost = convertCost split.Value
-    printfn "\t%-50s\t%10M" lineage cost
+    printfn "    %-50s\t$%10M" lineage cost
   printfn ""
