@@ -59,5 +59,7 @@ for transaction in transactions do
     let account = accountMap.[split.Account.Value]
     let lineage = accountLineage account account.Name
     let cost = convertCost split.Value
-    printfn "    %-50s\t$%10M" lineage cost
+    let reconciled = (split.ReconciledState = "y")
+    printf "  %s%-50s" (if reconciled then "* " else "") lineage
+    printfn "    $%10M" cost
   printfn ""
